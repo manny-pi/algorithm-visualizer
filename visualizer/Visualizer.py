@@ -18,21 +18,21 @@ class Visualizer:
     def setDataset(self, dataset): 
         """Stores the raw values of the dataset being sorted."""
         
-        self.__dataset = list(dataset)
-        self.__encodedDataset = self.__encodeDataset(self.__dataset)
+        self.__dataset = list(dataset)  # deep-copy the dataset
+        self.encodedDataset = self.__encodeDataset(self.__dataset)
 
     def setAlgorithm(self, algorithm="insertion_sort"): 
         """Select the algorithm to use for sorting. Default is Insertion Sort."""
 
         if algorithm == "bubble_sort": 
-            self.__algorithm = BubbleSort(self.__encodedDataset)
+            self.__algorithm = BubbleSort
         elif algorithm == "insertion_sort": 
-            self.__algorithm = InsertionSort(self.__encodedDataset)
+            self.__algorithm = InsertionSort
         elif algorithm == "merge_sort": 
-            self.__algorithm = MergeSort(self.__encodedDataset)
+            self.__algorithm = MergeSort
         elif algorithm == "selection_sort": 
-            self.__algorithm = SelectionSort(self.__encodedDataset)
-
+            self.__algorithm = SelectionSort
+        self.__algorithm(self.encodedDataset)
 
     def start(self): 
         """Starts the visualizers."""
@@ -47,7 +47,6 @@ class Visualizer:
 
     def __render(self): 
         """Renders the color-coded dataset to the screen"""
-
         pass 
 
 
