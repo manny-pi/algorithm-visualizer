@@ -49,7 +49,7 @@ def test_bar(data_set=None):
 
         # Draw the graphics 
         # - - - - - - - - - -
-        WINDOW.blit(bar.surface, (bar.x, bar.y))
+        WINDOW.blit(bar.surface, (bar.rect.x, bar.rect.y))
 
         # Update the frame 
         # - - - - - - - - - -

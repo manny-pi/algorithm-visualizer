@@ -29,7 +29,8 @@ class Bar(Sprite):
         self.rect = self.surface.get_rect(bottomleft=self.bottomleft) 
 
         color = int(0xFFFFFF * (value / Bar.MAX_VALUE)) 
-        self.color = hexToRGB(color)
+        # self.color = hexToRGB(color)
+        self.color = (123, 173, 231)
         print(self.color)
         self.surface.fill(self.color)
 
