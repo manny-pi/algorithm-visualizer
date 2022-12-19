@@ -11,6 +11,7 @@ from __algorithms.selection_sort import SelectionSort
 class Visualizer: 
 
     def __init__(self): 
+
         self.__dataset = None          # dataset to be sorted and visualized
         self.encodedDataset = None     # color-coded dataset to be passed into the algorithm
         self.__algorithm = None        # the algorithm being used to sort
@@ -45,8 +46,12 @@ class Visualizer:
 
     def __encodeDataset(self, dataset): 
         """Color codes the values in the dataset."""
+
+        ret = []
+        for value in dataset:
+            ret.append(ColorCoded(value, ((1/3)*value, (2/3)*value, value)))
         
-        raise NotImplementedError("__encodeDataset() hasn't been implemented.")
+        return ret
 
     def __render(self): 
         """Renders the color-coded dataset to the screen."""
@@ -59,15 +64,38 @@ class ColorCoded:
     """Represents the components that are used for the visualization."""
 
     def __init__(self, value, color): 
+
         self.value = value
         self.color = color
 
-    def __str__(self): 
+    def __repr__(self): 
+
         return f"({self.value}, {self.color})"
+
+    def __le__(self, other): 
+
+        return self.value <= other.value
+    
+    def __ge__(self, other): 
+
+        return self.value >= other.value
+
+    def __lt__(self, other): 
+
+        return self.value < other.value
+
+    def __gt__(self, other): 
+        
+        return self.value > other.value
+
+
+
 
 if __name__ == '__main__': 
     from random import randint as r
     viz = Visualizer()
-    viz.setDataset([r(1, 100) for i in range(10)])
+    
+    data = [r(1, 100) for i in range(10)]
+    viz.setDataset(data)
     viz.setAlgorithm(algorithm="selection_sort")
     viz.start()
