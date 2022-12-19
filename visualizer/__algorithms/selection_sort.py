@@ -10,7 +10,7 @@ class SelectionSort(algorithm.Algorithm):
 
     def nextStep(self): 
         """Completes a single step in the Selection Sort algorithm."""
-        
+
         smallest = self.encodedDataset[self.j].value
         indexOfSmallest = self.j
         i = self.j + 1
@@ -25,7 +25,9 @@ class SelectionSort(algorithm.Algorithm):
         self.encodedDataset[indexOfSmallest] = current
         self.j += 1
 
-    def sorted(self):
+        print(self.encodedDataset)
+
+    def finished(self):
         """Check if the dataset is sorted. 
         
         Return True if the dataset is sorted. 

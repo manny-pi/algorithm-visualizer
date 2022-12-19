@@ -41,17 +41,18 @@ class Visualizer:
     def start(self): 
         """Starts the visualizers."""
 
-        self.__render()
+        self.__render() 
 
     def __encodeDataset(self, dataset): 
         """Color codes the values in the dataset."""
-
+        
         raise NotImplementedError("__encodeDataset() hasn't been implemented.")
 
     def __render(self): 
         """Renders the color-coded dataset to the screen."""
 
-        raise NotImplementedError("__render() hasn't been implemented.")
+        while not self.__algorithm.finished(): 
+            self.__algorithm.nextStep()
 
 
 class ColorCoded: 
@@ -61,9 +62,12 @@ class ColorCoded:
         self.value = value
         self.color = color
 
+    def __str__(self): 
+        return f"({self.value}, {self.color})"
 
 if __name__ == '__main__': 
     from random import randint as r
     viz = Visualizer()
-    viz.setDataset([r(1, 100) for i in range(50)])
+    viz.setDataset([r(1, 100) for i in range(10)])
     viz.setAlgorithm(algorithm="selection_sort")
+    viz.start()
