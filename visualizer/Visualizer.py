@@ -24,15 +24,16 @@ class Visualizer:
     def setAlgorithm(self, algorithm="insertion_sort"): 
         """Select the algorithm to use for sorting. Default is Insertion Sort."""
 
+        alg = None
         if algorithm == "bubble_sort": 
-            self.__algorithm = BubbleSort
+            alg = BubbleSort
         elif algorithm == "insertion_sort": 
-            self.__algorithm = InsertionSort
+            alg = InsertionSort
         elif algorithm == "merge_sort": 
-            self.__algorithm = MergeSort
+            alg = MergeSort
         elif algorithm == "selection_sort": 
-            self.__algorithm = SelectionSort
-        self.__algorithm(self.encodedDataset)
+            alg = SelectionSort
+        self.__algorithm = alg(self.encodedDataset) 
 
     def start(self): 
         """Starts the visualizers."""
