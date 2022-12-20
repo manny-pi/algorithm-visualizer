@@ -3,7 +3,6 @@ class SelectionSort:
         """Initialize the outer variable for the selection sort method."""
         
         self.encodedDataset = encodedDataset
-        print(self.encodedDataset)
         self.j = 0
 
     def nextStep(self): 
@@ -22,6 +21,8 @@ class SelectionSort:
         self.encodedDataset[self.j] = smallest
         self.encodedDataset[indexOfSmallest] = current
         self.j += 1
+
+        print(self.encodedDataset)
 
     def finished(self):
         """Check if the dataset is sorted. 

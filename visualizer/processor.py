@@ -1,17 +1,17 @@
-"""Processor class. 
-
-This class is the entry point for the user. At the moment, we will 
-consider this to be our application code.  
-"""
-
 from __algorithms.bubble_sort import BubbleSort
 from __algorithms.insertion_sort import InsertionSort
 from __algorithms.merge_sort import MergeSort
 from __algorithms.selection_sort import SelectionSort
+from renderer import Renderer
 
 
 class Processor: 
+    """Processor class. 
 
+    This class is the entry point for the client. At the moment, we will 
+    consider this to be our application code.  
+    """
+    
     def __init__(self): 
 
         self.__algorithm = None        # the user-specified sorting algorithm
@@ -24,7 +24,7 @@ class Processor:
         
         if dataset == None or dataset == []: 
             raise TypeError("Type Error: dataset cannot be null. \
-                Please use the {Visualizer}.setDataset() function.")
+                Please use the {Processor}.setDataset() function.")
 
         self.__dataset = list(dataset)  # deep-copy the dataset
         self.encodedDataset = self.__encodeDataset(self.__dataset)
@@ -46,21 +46,25 @@ class Processor:
     def start(self): 
         """Starts the visualizer."""
 
-        self.__render() 
+        self.__renderer = Renderer(self)    # instantiate the Renderer object
 
     def __encodeDataset(self, dataset):
-        """Color codes the values in the dataset."""
+        """Color codes the values in the dataset. Uses the ReLU function to 
+        convert the raw value into a hexadecimal that is then converted into RGB"""
 
         ret = []
         for value in dataset:
-            ret.append(ColorCoded(value, ((1/3)*value, (2/3)*value, value)))
+            ret.append(ColorCoded(value, (
+                round((1/3)*value, 2), 
+                round((2/3)*value), 
+                value)))
         
         return ret
 
-    def __render(self): 
-        """Renders the color-coded dataset to the screen."""
+    def cont(self): 
+        """Continues the process by completed the next step in the algorithm."""
 
-        while not self.__algorithm.finished(): 
+        if not self.__algorithm.finished(): 
             self.__algorithm.nextStep()
 
 
@@ -74,7 +78,7 @@ class ColorCoded:
 
     def __repr__(self): 
 
-        return f"({self.value}, {self.color})"
+        return f"({self.value}, (R={self.color[0]}, G={self.color[1]}, B={self.color[2]}))"
 
     def __le__(self, other): 
 
