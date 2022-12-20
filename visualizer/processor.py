@@ -1,5 +1,7 @@
-"""
+"""Processor class. 
 
+This class is the entry point for the user. At the moment, we will 
+consider this to be our application code.  
 """
 
 from __algorithms.bubble_sort import BubbleSort
@@ -8,25 +10,27 @@ from __algorithms.merge_sort import MergeSort
 from __algorithms.selection_sort import SelectionSort
 
 
-class Visualizer: 
+class Processor: 
 
     def __init__(self): 
 
+        self.__algorithm = None        # the user-specified sorting algorithm
         self.__dataset = None          # dataset to be sorted and visualized
-        self.encodedDataset = None     # color-coded dataset to be passed into the algorithm
-        self.__algorithm = None        # the algorithm being used to sort
+        self.encodedDataset = None     # color-coded dataset that's passed to the algorithm
+        self.__renderer = None         # Renderer object to draw visualization to GUI
 
     def setDataset(self, dataset): 
         """Stores the raw values of the dataset being sorted."""
         
         if dataset == None or dataset == []: 
-            raise TypeError("Type Error: dataset cannot be null. Please use the {Visualizer}.setDataset() function.")
+            raise TypeError("Type Error: dataset cannot be null. \
+                Please use the {Visualizer}.setDataset() function.")
 
         self.__dataset = list(dataset)  # deep-copy the dataset
         self.encodedDataset = self.__encodeDataset(self.__dataset)
 
     def setAlgorithm(self, algorithm="insertion_sort"): 
-        """Select the algorithm to use for sorting. Default is Insertion Sort."""
+        """Select the algorithm to use for sorting. Default: Insertion Sort."""
 
         alg = None
         if algorithm == "bubble_sort": 
@@ -40,11 +44,11 @@ class Visualizer:
         self.__algorithm = alg(self.encodedDataset) 
 
     def start(self): 
-        """Starts the visualizers."""
+        """Starts the visualizer."""
 
         self.__render() 
 
-    def __encodeDataset(self, dataset): 
+    def __encodeDataset(self, dataset):
         """Color codes the values in the dataset."""
 
         ret = []
@@ -89,13 +93,12 @@ class ColorCoded:
         return self.value > other.value
 
 
-
-
 if __name__ == '__main__': 
     from random import randint as r
-    viz = Visualizer()
+    proc = Processor()
     
     data = [r(1, 100) for i in range(10)]
-    viz.setDataset(data)
-    viz.setAlgorithm(algorithm="selection_sort")
-    viz.start()
+    proc.setDataset(data)
+    proc.setAlgorithm(algorithm="selection_sort")
+    proc.start()
+

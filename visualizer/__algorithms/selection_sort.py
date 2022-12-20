@@ -1,7 +1,4 @@
-from . import algorithm
-
-
-class SelectionSort(algorithm.Algorithm): 
+class SelectionSort: 
     def __init__(self, encodedDataset): 
         """Initialize the outer variable for the selection sort method."""
         
@@ -25,7 +22,6 @@ class SelectionSort(algorithm.Algorithm):
         self.encodedDataset[self.j] = smallest
         self.encodedDataset[indexOfSmallest] = current
         self.j += 1
-
 
     def finished(self):
         """Check if the dataset is sorted. 
