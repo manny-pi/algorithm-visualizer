@@ -64,8 +64,6 @@ class Processor:
     def cont(self): 
         """Continues the process by completed the next step in the algorithm."""
 
-        print(self.encodedDataset)
-
         if not self.__algorithm.finished(): 
             self.__algorithm.nextStep()
 

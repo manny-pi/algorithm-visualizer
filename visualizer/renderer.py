@@ -9,6 +9,8 @@ class Renderer:
     __WINDOW_WIDTH = 1000
     __WINDOW_HEIGHT = 400
     __MAIN_WINDOW = pygame.display.set_mode((__WINDOW_WIDTH, __WINDOW_HEIGHT))
+    __CLOCK = time.Clock()
+    __FRAME_RATE = 1 # 1 frame per second
 
     def __init__(self, processor): 
         self.__processor = processor        # store the processor object used to run the algorithm
@@ -22,11 +24,7 @@ class Renderer:
             for event in pygame.event.get(): 
                 if event.type == pygame.QUIT:
                     running = False
-                # Manually update frame (press 'u')
-                elif event.type == pygame.KEYDOWN: 
-                    if event.key == pygame.K_u:
-                        self.__updateFrame()
-            pygame.display.flip()
+            self.__updateFrame()
 
     def __updateFrame(self): 
         """Continues the processor."""
@@ -35,12 +33,14 @@ class Renderer:
         self.__bars = self.__generateBars() # udpate the bars to corresponding with the sorted dataset
         self.__render()                     # render the results of the processor
 
+
     def __render(self): 
         """Renders the encoded dataset to the screen."""
 
         for bar in self.__bars: 
             Renderer.__MAIN_WINDOW.blit(bar.surface, bar.rect)
         pygame.display.flip()
+        Renderer.__CLOCK.tick(Renderer.__FRAME_RATE)
 
     def __generateBars(self): 
         """ Returns a list of Bar objects whose colors correspond with the values in the dataset """ 
