@@ -64,6 +64,8 @@ class Processor:
     def cont(self): 
         """Continues the process by completed the next step in the algorithm."""
 
+        print(self.encodedDataset)
+
         if not self.__algorithm.finished(): 
             self.__algorithm.nextStep()
 
@@ -101,7 +103,7 @@ if __name__ == '__main__':
     from random import randint as r
     proc = Processor()
     
-    data = [r(1, 100) for i in range(10)]
+    data = [r(1, 100) for i in range(20)]
     proc.setDataset(data)
     proc.setAlgorithm(algorithm="selection_sort")
     proc.start()

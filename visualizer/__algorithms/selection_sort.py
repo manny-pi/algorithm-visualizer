@@ -1,28 +1,26 @@
 class SelectionSort: 
-    def __init__(self, encodedDataset): 
+    def __init__(self, dataset): 
         """Initialize the outer variable for the selection sort method."""
         
-        self.encodedDataset = encodedDataset
+        self.dataset = dataset
         self.j = 0
 
     def nextStep(self): 
         """Completes a single step in the Selection Sort algorithm."""
 
-        smallest = self.encodedDataset[self.j]
+        smallest = self.dataset[self.j]
         indexOfSmallest = self.j
         i = self.j + 1
-        while i < len(self.encodedDataset):
-            if self.encodedDataset[i] < smallest:
-                smallest = self.encodedDataset[i]
+        while i < len(self.dataset):
+            if self.dataset[i] < smallest:
+                smallest = self.dataset[i]
                 indexOfSmallest = i
             i += 1
 
-        current = self.encodedDataset[self.j]
-        self.encodedDataset[self.j] = smallest
-        self.encodedDataset[indexOfSmallest] = current
+        current = self.dataset[self.j]
+        self.dataset[self.j] = smallest
+        self.dataset[indexOfSmallest] = current
         self.j += 1
-
-        print(self.encodedDataset)
 
     def finished(self):
         """Check if the dataset is sorted. 
@@ -30,9 +28,9 @@ class SelectionSort:
         Return True if the dataset is sorted. 
         Return False if the dataset is not sorted."""
 
-        for i in range(len(self.encodedDataset) - 1): 
-            a = self.encodedDataset[i].value
-            b = self.encodedDataset[i+1].value
+        for i in range(len(self.dataset) - 1): 
+            a = self.dataset[i].value
+            b = self.dataset[i+1].value
             if not a <= b: 
                 return False
         return True

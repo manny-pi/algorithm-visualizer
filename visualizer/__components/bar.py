@@ -17,21 +17,16 @@ class Bar(Sprite):
 
     MAX_VALUE = 1
 
-    def __init__(self, value=0, dim=(), bottomleft=()): 
+    def __init__(self, color=(), dim=(), bottomleft=()): 
         """ Initialize a Bar object with dimension W x H, and bottom lefft at (X, Y) """ 
 
         super().__init__() 
 
-        self.value = value 
-        self.bottomleft = bottomleft
 
         self.surface = Surface(dim) 
+        self.bottomleft = bottomleft
         self.rect = self.surface.get_rect(bottomleft=self.bottomleft) 
-
-        color = int(0xFFFFFF * (value / Bar.MAX_VALUE)) 
-        # self.color = hexToRGB(color)
-        self.color = (123, 173, 231)
-        print(self.color)
+        self.color = color
         self.surface.fill(self.color)
 
 
