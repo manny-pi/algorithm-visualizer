@@ -17,16 +17,7 @@ class Encoder:
         ret = []
         if by == "color":
             for value in dataset:
-                ret.append(
-                    ColorCoded(
-                        value, 
-                        (
-                            round((2/3)*value), 
-                            value,
-                            round((1/3)*value, 2), 
-                        )
-                    )
-                )
+                ret.append(ColorCoded(value, (255, 0, 0)))
             
         return ret
 

@@ -6,8 +6,8 @@ from __components.bar import Bar
 class Renderer: 
     """The Renderer class handles drawing the graphics to the screen."""
 
-    __WINDOW_WIDTH = 1000
-    __WINDOW_HEIGHT = 400
+    __WINDOW_WIDTH = 1400
+    __WINDOW_HEIGHT = 800
     __MAIN_WINDOW = pygame.display.set_mode((__WINDOW_WIDTH, __WINDOW_HEIGHT))
     __CLOCK = time.Clock()
     __FRAME_RATE = 5
@@ -26,9 +26,11 @@ class Renderer:
                     running = False
             self.__updateFrame()
 
+
     def __updateFrame(self): 
         """Continues the processor."""
 
+        Renderer.__MAIN_WINDOW.fill((0, 0, 0))
         self.__processor.cont()             # continue to the next step in sorting algorithm
         self.__bars = self.__generateBars() # udpate the bars to corresponding with the sorted dataset
         self.__render()                     # render the results of the processor
@@ -49,12 +51,16 @@ class Renderer:
         barWidth = Renderer.__WINDOW_WIDTH / size
         barHeight = Renderer.__WINDOW_HEIGHT
         
+        MAX = max(self.__processor.encodedDataset).value
+        
         j = 0 
         bars = list() 
-        for j in range(size): 
+        for j in range(size):
+            ratio = self.__processor.encodedDataset[j].value / MAX 
+            h = ratio * Renderer.__WINDOW_HEIGHT
             bar = Bar(
                 color=self.__processor.encodedDataset[j].color, 
-                dim=(barWidth, barHeight),
+                dim=(barWidth, h),
                 bottomleft=(j * barWidth, barHeight))
             bars.append(bar)
 

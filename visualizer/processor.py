@@ -59,7 +59,6 @@ class Processor:
         
         Renderer.setFrameRate(frameRate)
 
-
     def start(self): 
         """Starts the visualizer."""
 
@@ -74,9 +73,10 @@ class Processor:
 
 if __name__ == '__main__': 
     from random import randint as r
-    proc = Processor()
     data = [r(1, 100) for i in range(500)]
+
+    proc = Processor()
     proc.setDataset(data)
-    proc.setAlgorithm(algorithm="insertion_sort")
-    proc.sortSpeed("low")
+    proc.setAlgorithm(algorithm="selection_sort")
+    proc.sortSpeed("high")
     proc.start()
