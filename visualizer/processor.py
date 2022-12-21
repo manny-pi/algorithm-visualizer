@@ -75,9 +75,8 @@ class Processor:
 if __name__ == '__main__': 
     from random import randint as r
     proc = Processor()
-    
     data = [r(1, 100) for i in range(500)]
     proc.setDataset(data)
     proc.setAlgorithm(algorithm="insertion_sort")
-    proc.sortSpeed("medium")
+    proc.sortSpeed("low")
     proc.start()
