@@ -3,16 +3,6 @@ from pygame import Surface
 from random import randint as r 
 
 
-def hexToRGB(col: int): 
-    """ Returns a tuple containing RGB color values """
-
-    R = col >> 16 
-    G = (col - (R << 16)) >> 8 
-    B = col - ((col >> 8) << 8)
-
-    return (R, G, B)
-    
-
 class Bar(Sprite):
 
     MAX_VALUE = 1
@@ -22,13 +12,11 @@ class Bar(Sprite):
 
         super().__init__() 
 
-
         self.surface = Surface(dim) 
         self.bottomleft = bottomleft
         self.rect = self.surface.get_rect(bottomleft=self.bottomleft) 
         self.color = color
         self.surface.fill(self.color)
-
 
     def __lt__(self, other): 
         return self.value < other.value 
@@ -47,4 +35,3 @@ class Bar(Sprite):
         """ Set the MAX_VALUE for the Bars. MAX_VALUE is used to determine the color intensity of each Bar """ 
 
         cls.MAX_VALUE = value 
-

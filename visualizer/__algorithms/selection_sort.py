@@ -1,6 +1,11 @@
-class SelectionSort: 
+from .algorithm import Algorithm
+
+
+class SelectionSort(Algorithm): 
+
     def __init__(self, dataset): 
-        """Initialize the outer variable for the selection sort method."""
+
+        """Initialize the variable that controls the outer loop for the Selection Sort algorithm.."""
         
         self.dataset = dataset
         self.j = 0
@@ -21,16 +26,3 @@ class SelectionSort:
         self.dataset[self.j] = smallest
         self.dataset[indexOfSmallest] = current
         self.j += 1
-
-    def finished(self):
-        """Check if the dataset is sorted. 
-        
-        Return True if the dataset is sorted. 
-        Return False if the dataset is not sorted."""
-
-        for i in range(len(self.dataset) - 1): 
-            a = self.dataset[i].value
-            b = self.dataset[i+1].value
-            if not a <= b: 
-                return False
-        return True

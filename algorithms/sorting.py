@@ -18,7 +18,6 @@ def insertionSort(_in):
 
         j += 1
 
-
 def insertionSortRecursive(_in, n):
     if n > 0:
         insertionSortRecursive(_in, n - 1)
@@ -30,7 +29,6 @@ def insertionSortRecursive(_in, n):
             _in[i + 1] = temp
 
             i -= 1
-
 
 def selectionSort(_in):
     j = 0
