@@ -4,10 +4,9 @@ from .algorithm import Algorithm
 class SelectionSort(Algorithm): 
 
     def __init__(self, dataset): 
-
         """Initialize the variable that controls the outer loop for the Selection Sort algorithm.."""
-        
-        self.dataset = dataset
+
+        super().__init__(dataset)
         self.j = 0
 
     def nextStep(self): 

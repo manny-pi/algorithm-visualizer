@@ -6,7 +6,7 @@ class InsertionSort(Algorithm):
     def __init__(self, dataset):
         """Initialize the variable that controls the outer loop for the Insertion Sort algorithm."""
 
-        self.dataset = dataset
+        super().__init__(dataset)
         self.j = 1
 
     def nextStep(self): 

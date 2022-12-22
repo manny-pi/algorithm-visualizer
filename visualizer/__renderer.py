@@ -26,14 +26,13 @@ class Renderer:
                     running = False
             self.__updateFrame()
 
-
     def __updateFrame(self): 
         """Continues the processor."""
 
-        Renderer.__MAIN_WINDOW.fill((0, 0, 0))
-        self.__processor.cont()             # continue to the next step in sorting algorithm
-        self.__bars = self.__generateBars() # udpate the bars to corresponding with the sorted dataset
-        self.__render()                     # render the results of the processor
+        Renderer.__MAIN_WINDOW.fill((0, 0, 0))  # clear the window
+        self.__processor.cont()                 # continue to the next step in sorting algorithm
+        self.__bars = self.__generateBars()     # udpate the bars to corresponding with the sorted dataset
+        self.__render()                         # render the results of the processor
 
     def __render(self): 
         """Renders the encoded dataset to the screen."""

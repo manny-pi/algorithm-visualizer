@@ -1,4 +1,7 @@
 class Algorithm: 
+
+    def __init__(self, dataset): 
+        self.dataset = dataset
     
     def finished(self):
         """Check if the dataset is sorted. 
