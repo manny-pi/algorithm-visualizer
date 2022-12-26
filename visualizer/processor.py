@@ -50,11 +50,13 @@ class Processor:
         Sort speed choices are 'low', 'medium', 'high'
         """
         frameRate = 0
-        if speed == 'low': 
+        if speed == 'very_slow': 
+            frameRate = 1
+        elif speed == 'slow': 
             frameRate = 10
         elif speed == 'medium': 
             frameRate = 50
-        elif speed == 'high': 
+        elif speed == 'fast': 
             frameRate = 0
         
         Renderer.setFrameRate(frameRate)
@@ -77,6 +79,6 @@ if __name__ == '__main__':
 
     proc = Processor()
     proc.setDataset(data)
-    proc.setAlgorithm(algorithm="selection_sort")
-    proc.sortSpeed("high")
+    proc.setAlgorithm(algorithm="insertion_sort")
+    proc.sortSpeed("very_slow")
     proc.start()

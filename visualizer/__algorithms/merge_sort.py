@@ -7,62 +7,46 @@ class MergeSort(Algorithm):
         """Initialize the variable that controls the divide-and-conquer section of the Merge Sort algorithm."""
 
         super().__init__(dataset)
+        self.width = 1
+        self.n = len(self.dataset)
 
     def nextStep(self): 
-        raise NotImplementedError("{MergeSort}.nextStep() hasn't been implemented yet.")
+        """Completes a single step in the Merge Sort algorithm."""
 
-import math
-def mergeSort(_in, p, r):
-    """Divides the problem into subproblems."""
+        l = 0
+        while (l < self.n):
+            r = min(l + (self.width * 2 - 1), self.n - 1)		
+            m = min(l + self.width - 1, self.n - 1)
+            self.__merge(self.dataset, l, m, r)
+            l += (self.width * 2)
+        self.width *= 2
 
-    if p < r:
-        q = math.floor((p + r) / 2)         # Calculate midpoint q of sub-array A[p.. r]
-        mergeSort(_in, p, q)                # Call mergeSort on sub-array A[p.. q]
-        mergeSort(_in, q + 1, r)            # Call mergeSort on sub-array A[q + 1.. r]
-        mergeSortAux(_in, p, q, r)          # Call merge on sub-array A[p.. r]
+    def __merge(self, a, l, m, r):
+        n1 = m - l + 1
+        n2 = r - m
+        L = [0] * n1
+        R = [0] * n2
+        for i in range(0, n1):
+            L[i] = a[l + i]
+        for i in range(0, n2):
+            R[i] = a[m + i + 1]
 
-def mergeSortAux(_in, p, q, r):
-    """Sorts the values in the subproblem."""
-    
-    n_1 = q - p + 1     # Compute length of A[p.. q]
-    n_2 = r - q         # Compute length of A[q + 1.. r]
-
-    L = []              # New array to hold sub-array A[p.. q]
-    R = []              # New array to hold sub-array A[q + 1 .. r]
-
-    # Copy sub-array A[p.. q] to L
-    for i in range(n_1):
-        L.append(_in[p + i])
-
-    # Copy sub-array A[q + 1.. r] to R 
-    for j in range(n_2):
-        R.append(_in[q + j + 1])
-
-    # Add sentinel values to the arrays
-    L.append(None)
-    R.append(None)
-
-    # Compare values from L and R, and sort the array
-    i = 0
-    j = 0
-    for k in range(p, r + 1):
-
-        # Execute if reached sentinel value on left sub-array
-        if L[i] is None:
-            _in[k] = R[j]
-            j += 1
-
-        # Execute if reached sentinel value on right sub-array
-        elif R[j] is None:
-            _in[k] = L[i]
-            i += 1
-
-        # Exe cute if not reached sentinel value
-        else:
+        i, j, k = 0, 0, l
+        while i < n1 and j < n2:
             if L[i] <= R[j]:
-                _in[k] = L[i]  # Replace the element at _in[k]
-                i += 1         # Move on to the next element in L
-
+                a[k] = L[i]
+                i += 1
             else:
-                _in[k] = R[j]
+                a[k] = R[j]
                 j += 1
+            k += 1
+
+        while i < n1:
+            a[k] = L[i]
+            i += 1
+            k += 1
+
+        while j < n2:
+            a[k] = R[j]
+            j += 1
+            k += 1
