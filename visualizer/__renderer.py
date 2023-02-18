@@ -6,7 +6,7 @@ from __components.bar import Bar
 class Renderer: 
     """The Renderer class handles drawing the graphics to the screen."""
 
-    __WINDOW_WIDTH = 1400
+    __WINDOW_WIDTH = 2400
     __WINDOW_HEIGHT = 800
     __MAIN_WINDOW = pygame.display.set_mode((__WINDOW_WIDTH, __WINDOW_HEIGHT))
     __CLOCK = time.Clock()

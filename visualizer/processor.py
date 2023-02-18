@@ -75,10 +75,10 @@ class Processor:
 
 if __name__ == '__main__': 
     from random import randint as r
-    data = [r(1, 100) for i in range(500)]
+    data = [r(1, 100) for i in range(1800)]
 
     proc = Processor()
     proc.setDataset(data)
-    proc.setAlgorithm(algorithm="insertion_sort")
+    proc.setAlgorithm(algorithm="merge_sort")
     proc.sortSpeed("very_slow")
     proc.start()
